@@ -17,7 +17,7 @@ const SubmitLeave = () => {
     const [form] = Form.useForm();
 
     const initialValues = {
-        LeaveType: 'lucy', // 设置 LeaveType 的初始值
+        LeaveType: 'type1', // 设置 LeaveType 的初始值
       };
 
     const onFinish = (values) => {
