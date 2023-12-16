@@ -38,12 +38,12 @@ const SubmitLeave = () => {
 
                 <Form.Item label="LeaveType" name="LeaveType">
                     <Select
-                        initialValues="lucy"
+                        initialValues="type1"
                         style={{ width: 120 }}
                         options={[
-                            { value: 'jack', label: 'Jack' },
-                            { value: 'lucy', label: 'Lucy' },
-                            { value: 'Yiminghe', label: 'yiminghe' },
+                            { value: 'type1', label: 'type1' },
+                            { value: 'type2', label: 'type2' },
+                            { value: 'type3', label: 'type3' },
                         ]}
                     />
                 </Form.Item>
