@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import axios from "axios";
 import {
     Button,
     DatePicker,
@@ -13,8 +14,10 @@ import {
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
+
 const SubmitLeave = () => {
     const [form] = Form.useForm();
+    const [list, setList] = useState({});
 
     const initialValues = {
         LeaveType: 'type1', // 设置 LeaveType 的初始值
@@ -22,7 +25,25 @@ const SubmitLeave = () => {
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        setList(values);
+        creatApplication();
     };
+
+    function creatApplication(){
+        const data = {
+            employee: 'employee1',
+            fromDate: list.FromDate,
+            dayOff: list.Dates,
+            employeeLeaveType: list.LeaveType,
+        }
+        axios.post("http://localhost:8080/api/application/list",data)
+             .then(response => {
+                console.log(response.data)
+             })
+             .catch(e => {
+                console.log(e)
+             })
+    }
     return (
         <>
             <Form
@@ -47,8 +68,8 @@ const SubmitLeave = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item label="LeavePeriod" name="LeavePeriod">
-                    <RangePicker />
+                <Form.Item label="FromDate" name="FromDate">
+                    <DatePicker />
                 </Form.Item>
                 <Form.Item label="Dates" name="Dates">
                     <InputNumber />
