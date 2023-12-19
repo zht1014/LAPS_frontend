@@ -6,12 +6,9 @@ import {
     Form,
     Input,
     InputNumber,
-    Radio,
     Select,
-    TreeSelect,
 } from 'antd';
 
-const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
 
@@ -20,29 +17,39 @@ const SubmitLeave = () => {
     const [list, setList] = useState({});
 
     const initialValues = {
-        LeaveType: 'type1', // 设置 LeaveType 的初始值
-      };
+        LeaveType: 'Annual Leave',
+    };
 
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+    const onFinish = (values) => {    
         setList(values);
         creatApplication();
     };
 
-    function creatApplication(){
+    function creatApplication() {
+        const selectedDate = list.FromDate.toDate();
+        const year = selectedDate.getFullYear();
+        const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const day = String(selectedDate.getDate()).padStart(2, '0');
+        const hours = String(selectedDate.getHours()).padStart(2, '0');
+        const minutes = String(selectedDate.getMinutes()).padStart(2, '0');
+        const seconds = String(selectedDate.getSeconds()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        console.log(formattedDate);
         const data = {
             employee: 'employee1',
-            fromDate: list.FromDate,
+            fromDate: formattedDate,
             dayOff: list.Dates,
             employeeLeaveType: list.LeaveType,
         }
-        axios.post("http://localhost:8080/api/application/list",data)
-             .then(response => {
+        console.log('Received values of form: ', data);
+        axios.post('http://localhost:8080/api/application/create', data)
+            .then(response => {
                 console.log(response.data)
-             })
-             .catch(e => {
+            })
+            .catch(e => {
+                console.log('fail')
                 console.log(e)
-             })
+            })
     }
     return (
         <>
@@ -59,10 +66,10 @@ const SubmitLeave = () => {
 
                 <Form.Item label="LeaveType" name="LeaveType">
                     <Select
-                        initialValues="type1"
+                        initialValues="Annual Leave"
                         style={{ width: 120 }}
                         options={[
-                            { value: 'type1', label: 'type1' },
+                            { value: 'Annual Leave', label: 'Annual Leave1' },
                             { value: 'type2', label: 'type2' },
                             { value: 'type3', label: 'type3' },
                         ]}
