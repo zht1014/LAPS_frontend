@@ -8,6 +8,7 @@ import {
     InputNumber,
     Select,
 } from 'antd';
+//import { useParams } from 'react-router-dom';
 
 const { TextArea } = Input;
 
@@ -20,29 +21,27 @@ const SubmitLeave = () => {
         LeaveType: 'Annual Leave',
     };
 
-    const onFinish = (values) => {    
+    const onFinish = (values) => {
         setList(values);
-        creatApplication();
+        CreatApplication();
     };
 
-    function creatApplication() {
+    function CreatApplication() {
         const selectedDate = list.FromDate.toDate();
         const year = selectedDate.getFullYear();
         const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
         const day = String(selectedDate.getDate()).padStart(2, '0');
-        const hours = String(selectedDate.getHours()).padStart(2, '0');
-        const minutes = String(selectedDate.getMinutes()).padStart(2, '0');
-        const seconds = String(selectedDate.getSeconds()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        const formattedDate = `${year}-${month}-${day}`;
         console.log(formattedDate);
+        const user_id = 1
+
         const data = {
-            employee: 'employee1',
             fromDate: formattedDate,
             dayOff: list.Dates,
             employeeLeaveType: list.LeaveType,
         }
         console.log('Received values of form: ', data);
-        axios.post('http://localhost:8080/api/application/create', data)
+        axios.post(`http://localhost:8080/api/application/create/${user_id}`, data)
             .then(response => {
                 console.log(response.data)
             })

@@ -7,9 +7,9 @@ function App() {
     
     <Router>
       <div className="App">
-        <Link to="/home">首页</Link>
+        <Link to="/Home">首页</Link>
         <Routes>
-            <Route path="/home" element={<Home/>}></Route>
+            <Route path="/Home" element={<Home/>}></Route>
         </Routes>
         
       </div>
