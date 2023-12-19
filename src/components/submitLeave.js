@@ -18,7 +18,7 @@ const SubmitLeave = () => {
     const [list, setList] = useState({});
 
     const initialValues = {
-        LeaveType: 'Annual Leave',
+        LeaveType: 'ANNUAL_LEAVE',
     };
 
     const onFinish = (values) => {
@@ -38,7 +38,7 @@ const SubmitLeave = () => {
         const data = {
             fromDate: formattedDate,
             dayOff: list.Dates,
-            employeeLeaveType: list.LeaveType,
+            employeeLeaveType: list.LeaveType.toUpperCase()
         }
         console.log('Received values of form: ', data);
         axios.post(`http://localhost:8080/api/application/create/${user_id}`, data)
@@ -47,7 +47,7 @@ const SubmitLeave = () => {
             })
             .catch(e => {
                 console.log('fail')
-                console.log(e)
+                console.log(e.response.data)
             })
     }
     return (
@@ -65,10 +65,10 @@ const SubmitLeave = () => {
 
                 <Form.Item label="LeaveType" name="LeaveType">
                     <Select
-                        initialValues="Annual Leave"
+                        initialValues="ANNUAL_LEAVE"
                         style={{ width: 120 }}
                         options={[
-                            { value: 'Annual Leave', label: 'Annual Leave1' },
+                            { value: 'ANNUAL_LEAVE', label: 'Annual Leave1' },
                             { value: 'type2', label: 'type2' },
                             { value: 'type3', label: 'type3' },
                         ]}
