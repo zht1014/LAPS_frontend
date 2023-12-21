@@ -9,7 +9,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme, Avatar, Button } from 'antd';
 import SubmitLeave from '../../components/submitLeave';
 import ViewHistory from '../../components/viewHistory';
 
@@ -18,7 +18,7 @@ const { Header, Content, Footer, Sider } = Layout;
 const items = [
   { key: '1', icon: <UserOutlined />, label: 'Submit', component: () => <SubmitLeave /> },
   { key: '2', icon: <VideoCameraOutlined />, label: 'Manage', component: () => <h1>Component 2</h1> },
-  { key: '3', icon: <UploadOutlined />, label: 'View History', component: () => <ViewHistory/> },
+  { key: '3', icon: <UploadOutlined />, label: 'View History', component: () => <ViewHistory /> },
   { key: '4', icon: <BarChartOutlined />, label: 'Nav 4', component: () => <h1>Component 4</h1> },
   { key: '5', icon: <CloudOutlined />, label: 'Nav 5', component: () => <h1>Component 5</h1> },
   { key: '6', icon: <AppstoreOutlined />, label: 'Nav 6', component: () => <h1>Component 6</h1> },
@@ -47,6 +47,9 @@ const NavContent = () => {
 };
 
 const Home = () => {
+  const Logout = () => {
+
+  }
 
 
   const {
@@ -71,8 +74,23 @@ const Home = () => {
           <NavMenu />
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
-          <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <h1>Leave Application Processing System</h1>
+          <Header style={{
+            padding: 0,
+            background: colorBgContainer,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <h1>Leave Application Processing System</h1>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto', gap: '20px', alignItems: 'center' }}>
+              <div>user 1</div>
+              <Button size="small" style={{ verticalAlign: 'middle' }} onClick={Logout}>
+                Log Out
+              </Button>
+              <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+            </div>
           </Header>
           <Content style={{ margin: '24px 16px 0', overflow: 'initial', position: 'relative' }}>
             <div
