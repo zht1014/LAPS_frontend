@@ -12,12 +12,13 @@ import {
 import { Layout, Menu, theme, Avatar, Button } from 'antd';
 import SubmitLeave from '../../components/submitLeave';
 import ViewHistory from '../../components/viewHistory';
+import Manage from '../../components/manage';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
   { key: '1', icon: <UserOutlined />, label: 'Submit', component: () => <SubmitLeave /> },
-  { key: '2', icon: <VideoCameraOutlined />, label: 'Manage', component: () => <h1>Component 2</h1> },
+  { key: '2', icon: <VideoCameraOutlined />, label: 'Manage', component: () => <Manage /> },
   { key: '3', icon: <UploadOutlined />, label: 'View History', component: () => <ViewHistory /> },
   /* { key: '4', icon: <BarChartOutlined />, label: 'Nav 4', component: () => <h1>Component 4</h1> },
   { key: '5', icon: <CloudOutlined />, label: 'Nav 5', component: () => <h1>Component 5</h1> },
