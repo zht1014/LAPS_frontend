@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleLogin = async (values) => {
         try {
-            const response = await axios.post('http://localhost:3000/login', values);
+            const response = await axios.post('http://localhost:8080/api/login', values);
             console.log(response.data);
             navigate('/home');
         } catch (error) {

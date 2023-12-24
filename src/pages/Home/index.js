@@ -13,6 +13,9 @@ import { Layout, Menu, theme, Avatar, Button } from 'antd';
 import SubmitLeave from '../../components/submitLeave';
 import ViewHistory from '../../components/viewHistory';
 import Manage from '../../components/manage';
+import { useNavigate } from 'react-router-dom';
+import { performLogout } from './Logout/Logout';
+// import { NavContext } from './context/NavContext';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -47,10 +50,17 @@ const NavContent = () => {
   return selectedNavObj.component();
 };
 
-const Home = () => {
-  const Logout = () => {
+// const Home = () => {
+//   const Logout = () => {
 
-  }
+//   }
+
+const Home = () => {
+  const navigate = useNavigate();
+  
+  const Logout = () => {
+    performLogout(navigate);
+  };
 
 
   const {

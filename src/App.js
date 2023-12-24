@@ -9,8 +9,11 @@ function App() {
     <Router>
       <div className="App">
         <Link to="/Home">首页</Link>
+        <br />
+        <Link to="/Login">登录</Link>
         <Routes>
             <Route path="/Home" element={<Home/>}></Route>
+            <Route path="/Login" element={<Login/>}></Route>
         </Routes>
         
       </div>
